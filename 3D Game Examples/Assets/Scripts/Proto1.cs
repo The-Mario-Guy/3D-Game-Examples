@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Proto1 : MonoBehaviour
 {
     // Start is called before the first frame update
+    //Car
     public int speed = 8;
     public float turnSpeed = 100;
     private float _horizontalInput;
