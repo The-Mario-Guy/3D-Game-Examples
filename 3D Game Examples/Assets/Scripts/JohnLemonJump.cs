@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class JohnLemonJump : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class JohnLemonJump : MonoBehaviour
     private Rigidbody _rigidbody;
 
     private Vector3 _movement;
+
+    private Vector3 _defaultGravity = new Vector3(0f, -9.81f, 0f);
     Quaternion m_Rotation = Quaternion.identity;
 
     void Start()
     {
+        Physics.gravity = _defaultGravity;
 
         _rigidbody = GetComponent<Rigidbody>();
         playerRb = GetComponent<Rigidbody>();
@@ -47,7 +51,15 @@ public class JohnLemonJump : MonoBehaviour
             isOnGround = true;
 
         }
+        
+    }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
 
