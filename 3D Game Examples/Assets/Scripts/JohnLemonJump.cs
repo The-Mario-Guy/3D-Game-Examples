@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class JohnLemonJump : MonoBehaviour
 {
@@ -10,7 +11,16 @@ public class JohnLemonJump : MonoBehaviour
 
     public float jumpForce;
     public float gravityModifier;
+    public float OoB = -1.1f;
     public bool isOnGround = true;
+    public bool isAtCheckPoint = false;
+    public float lives = 4;
+    public float coins;
+    public float coinPlus = 1;
+    public float livesLost = -1;
+    public TextMeshProUGUI livesCounter;
+    public TextMeshProUGUI coinCounter;
+    public GameObject checkPointAreaObject;
 
     public float turnSpeed = 20f;
 
@@ -21,26 +31,41 @@ public class JohnLemonJump : MonoBehaviour
     private Vector3 _movement;
 
     private Vector3 _defaultGravity = new Vector3(0f, -9.81f, 0f);
+
+    private Vector3 _startingPos;
     Quaternion m_Rotation = Quaternion.identity;
 
     void Start()
     {
+        
         Physics.gravity = _defaultGravity;
 
         _rigidbody = GetComponent<Rigidbody>();
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
+        _startingPos = transform.position;
+
 
 
 
     }
     void Update()
     {
+        livesCounter.text = lives.ToString();
+        coinCounter.text = coins.ToString();
         if (Input.GetKeyDown(KeyCode.Z) && isOnGround == true)
         {
 
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+
+        }
+        //Death
+        if (transform.position.y < OoB)
+        {
+            lives += livesLost;
+            transform.position = _startingPos;
+             
         }
     }
 
@@ -52,15 +77,36 @@ public class JohnLemonJump : MonoBehaviour
 
         }
         
+
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Death"))
+        MeshRenderer m = checkPointAreaObject.GetComponent<MeshRenderer>();
+        m.enabled = true;
+        /* if (other.gameObject.CompareTag("Death"))
+         {
+             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+         }*/
+        if (other.gameObject == checkPointAreaObject)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            isAtCheckPoint = true;
+            m.enabled = false;
+            _startingPos = checkPointAreaObject.transform.position;
+        }
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Debug.Log("I hit a coin!");
+            coins += coinPlus;
+            Destroy(other);
+
         }
     }
+
+    
+    
+
+
 
 
     void FixedUpdate()
