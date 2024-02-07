@@ -11,16 +11,17 @@ public class JohnLemonJump : MonoBehaviour
 
     public float jumpForce;
     public float gravityModifier;
-    public float OoB = -1.1f;
+    private float OoB = -1.1f;
     public bool isOnGround = true;
     public bool isAtCheckPoint = false;
     public float lives = 4;
     public float coins;
-    public float coinPlus = 1;
-    public float livesLost = -1;
+    private float coinPlus = 1;
+    private float livesLost = -1;
     public TextMeshProUGUI livesCounter;
     public TextMeshProUGUI coinCounter;
     public GameObject checkPointAreaObject;
+    public GameObject FinishedAreaObject;
 
     public float turnSpeed = 20f;
 
@@ -37,7 +38,6 @@ public class JohnLemonJump : MonoBehaviour
 
     void Start()
     {
-        
         Physics.gravity = _defaultGravity;
 
         _rigidbody = GetComponent<Rigidbody>();
@@ -67,6 +67,10 @@ public class JohnLemonJump : MonoBehaviour
             transform.position = _startingPos;
              
         }
+        if (lives == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -84,21 +88,23 @@ public class JohnLemonJump : MonoBehaviour
     {
         MeshRenderer m = checkPointAreaObject.GetComponent<MeshRenderer>();
         m.enabled = true;
-        /* if (other.gameObject.CompareTag("Death"))
-         {
-             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-         }*/
         if (other.gameObject == checkPointAreaObject)
         {
             isAtCheckPoint = true;
             m.enabled = false;
             _startingPos = checkPointAreaObject.transform.position;
         }
+        if (other.gameObject == FinishedAreaObject)
+        {
+            //transform.position = _startingPos;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         if (other.gameObject.CompareTag("Coin"))
         {
-            Debug.Log("I hit a coin!");
+  
             coins += coinPlus;
-            Destroy(other);
+
+            Object.Destroy(other.gameObject);
 
         }
     }
