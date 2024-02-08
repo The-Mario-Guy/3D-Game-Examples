@@ -67,6 +67,7 @@ public class JohnLemonJump : MonoBehaviour
             transform.position = _startingPos;
              
         }
+
         if (lives == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -80,7 +81,13 @@ public class JohnLemonJump : MonoBehaviour
             isOnGround = true;
 
         }
-        
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            lives += livesLost;
+            transform.position = _startingPos;
+
+        }
+
 
     }
 
@@ -107,10 +114,22 @@ public class JohnLemonJump : MonoBehaviour
             Object.Destroy(other.gameObject);
 
         }
-    }
+        /*
+         * if (other.gameObject.CompareTag("Star"))
+        {
+  
+            Object.gameobject.SetActive(false);
 
-    
-    
+        }
+          */
+    }
+    /*void respawnCollectibles()
+    {
+
+    }
+    */
+
+
 
 
 
