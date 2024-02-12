@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jumping - John Lemon.unity
+    path: Assets/Scenes/Proto Stuff/Jumping - John Lemon.unity
     guid: e5ff1226ef5a84d8c884307c7c2c6a58
   m_configObjects: {}

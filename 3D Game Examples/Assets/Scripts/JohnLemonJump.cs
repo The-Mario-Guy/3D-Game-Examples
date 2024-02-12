@@ -50,7 +50,7 @@ public class JohnLemonJump : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         _startingPos = transform.position;
-        _collectibles = GameObject.FindGameObjectsWithTag("Collectible-Return");
+        _collectibles = GameObject.FindGameObjectsWithTag("Eggs");
 
 
 
@@ -128,10 +128,10 @@ public class JohnLemonJump : MonoBehaviour
             Object.Destroy(other.gameObject);
 
         }
-        if (other.gameObject.CompareTag("Collectible-Return"))
+        if (other.gameObject.CompareTag("Eggs"))
         {
             eggsCounter++;
-            other.gameObject.GetComponent<Collectibles>().HideCollectibles();
+            //other.gameObject.GetComponent<Collectibles>().HideCollectibles();
         }
 
 
@@ -165,7 +165,7 @@ public class JohnLemonJump : MonoBehaviour
         for (int i = 0; i < _collectibles.Length; i++)
         {
             _collectibles[i].SetActive(true);
-            _collectibles[i].GetComponent<Collectibles>().ReturnCollectibles();
+           //_collectibles[i].GetComponent<Collectibles>().ReturnCollectibles();
         }
     }
 
