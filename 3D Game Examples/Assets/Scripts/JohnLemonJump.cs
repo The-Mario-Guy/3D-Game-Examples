@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class JohnLemonJump : MonoBehaviour
 {
@@ -16,12 +17,17 @@ public class JohnLemonJump : MonoBehaviour
     public bool isAtCheckPoint = false;
     public float lives = 4;
     public float coins;
+    public float eggsCounter;
     private float coinPlus = 1;
     private float livesLost = -1;
+    private GameObject[] _collectibles;
+
     public TextMeshProUGUI livesCounter;
     public TextMeshProUGUI coinCounter;
+    public TextMeshProUGUI eggCounter;
     public GameObject checkPointAreaObject;
     public GameObject FinishedAreaObject;
+
 
     public float turnSpeed = 20f;
 
@@ -44,6 +50,7 @@ public class JohnLemonJump : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         _startingPos = transform.position;
+        _collectibles = GameObject.FindGameObjectsWithTag("Collectible-Return");
 
 
 
@@ -53,6 +60,7 @@ public class JohnLemonJump : MonoBehaviour
     {
         livesCounter.text = lives.ToString();
         coinCounter.text = coins.ToString();
+        eggCounter.text = eggsCounter.ToString();
         if (Input.GetKeyDown(KeyCode.Z) && isOnGround == true)
         {
 
@@ -64,14 +72,17 @@ public class JohnLemonJump : MonoBehaviour
         if (transform.position.y < OoB)
         {
             lives += livesLost;
+            ReturningCollectibles();
             transform.position = _startingPos;
-             
+
         }
 
         if (lives == 0)
         {
+            ReturningCollectibles();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -84,6 +95,7 @@ public class JohnLemonJump : MonoBehaviour
         if (collision.gameObject.CompareTag("Death"))
         {
             lives += livesLost;
+            ReturningCollectibles();
             transform.position = _startingPos;
 
         }
@@ -103,41 +115,33 @@ public class JohnLemonJump : MonoBehaviour
         }
         if (other.gameObject == FinishedAreaObject)
         {
+            isAtCheckPoint = false;
+            ReturningCollectibles();
             //transform.position = _startingPos;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (other.gameObject.CompareTag("Coin"))
         {
-  
+
             coins += coinPlus;
 
             Object.Destroy(other.gameObject);
 
         }
-        /*
-         * if (other.gameObject.CompareTag("Star"))
+        if (other.gameObject.CompareTag("Collectible-Return"))
         {
-  
-            Object.gameobject.SetActive(false);
-
+            eggsCounter++;
+            other.gameObject.GetComponent<Collectibles>().HideCollectibles();
         }
-          */
+
+
+
+
     }
-    /*void respawnCollectibles()
-    {
-
-    }
-    */
-
-
-
-
-
+ 
 
     void FixedUpdate()
     {
-
-
         float horizontal = Input.GetAxis("Horizontal");
 
         float vertical = Input.GetAxis("Vertical");
@@ -156,5 +160,13 @@ public class JohnLemonJump : MonoBehaviour
         m_Rotation = Quaternion.LookRotation(desiredForward);
     }
 
-}
+    void ReturningCollectibles()
+    {
+        for (int i = 0; i < _collectibles.Length; i++)
+        {
+            _collectibles[i].SetActive(true);
+            _collectibles[i].GetComponent<Collectibles>().ReturnCollectibles();
+        }
+    }
 
+}
