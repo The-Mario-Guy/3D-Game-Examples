@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Egg
   - Eggs
+  - Door Trigger
   layers:
   - Default
   - TransparentFX
