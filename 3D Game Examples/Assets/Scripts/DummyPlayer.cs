@@ -21,6 +21,14 @@ public class DummyPlayer : MonoBehaviour
     private Vector3 _startingPos;
     private GameObject[] _collectibles;
 
+    public float coins;
+    public float lives = 4;
+    private float coinPlus = 1;
+    private float livesLost = -1;
+
+    public TextMeshProUGUI livesCounter;
+    public TextMeshProUGUI coinCounter;
+
     Animator _animator;
     void Start()
     {
@@ -66,11 +74,20 @@ public class DummyPlayer : MonoBehaviour
 
     void Update()
     {
+        livesCounter.text = lives.ToString();
+        coinCounter.text = coins.ToString();
+      
+
         if (Input.GetKeyDown(KeyCode.Z) && IsOnGround == true)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             IsOnGround = false;
             isJumping = true;
+        }
+
+        if (lives == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -81,8 +98,26 @@ public class DummyPlayer : MonoBehaviour
             isJumping = false;
 
         }
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            lives += livesLost;
+            transform.position = _startingPos;
+
+        }
     }
-    void OnAnimatorMove()
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+
+            coins += coinPlus;
+
+            Object.Destroy(other.gameObject);
+
+        }
+    }
+        void OnAnimatorMove()
     {
         _rigidbody.MovePosition(_rigidbody.position + _movement * _animator.deltaPosition.magnitude);
         _rigidbody.MoveRotation(_rotation);
