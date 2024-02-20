@@ -10,6 +10,7 @@ TagManager:
   - Egg
   - Eggs
   - Door Trigger
+  - End
   layers:
   - Default
   - TransparentFX

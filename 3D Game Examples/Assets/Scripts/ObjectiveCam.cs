@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FollowPlayer : MonoBehaviour
+public class ObjectiveCam : MonoBehaviour
 {
     private struct PointInSpace
     {
@@ -13,7 +13,6 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField]
     [Tooltip("The transform to follow")]
     private Transform target;
-    private Transform objective;
 
     [SerializeField]
     [Tooltip("The offset between the target and the camera")]
@@ -31,11 +30,6 @@ public class FollowPlayer : MonoBehaviour
     /// Contains the positions of the target for the last X seconds
     ///</summary>
     private Queue<PointInSpace> pointsInSpace = new Queue<PointInSpace>();
-
-    private void Start()
-    {
-        
-    }
 
     void LateUpdate()
     {

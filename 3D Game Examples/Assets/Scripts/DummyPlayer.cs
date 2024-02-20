@@ -13,6 +13,8 @@ public class DummyPlayer : MonoBehaviour
     public float gravityModifier = 1f;
     public bool IsOnGround = true;
     public bool isJumping = false;
+    public bool levelEnd = false;
+    public bool hasGoal = true;
     private Vector3 _movement;
     private Rigidbody _rigidbody;
     private Quaternion _rotation = Quaternion.identity;
@@ -20,28 +22,38 @@ public class DummyPlayer : MonoBehaviour
     private Rigidbody playerRb;
     private Vector3 _startingPos;
     private GameObject[] _collectibles;
+    public GameObject exitDoor;
+    public GameObject exitPlat;
 
     public float coins;
     public float lives = 4;
     private float coinPlus = 1;
     private float livesLost = -1;
 
+    public Camera mainCamera;
+    public Camera objCamerea;
+
     public TextMeshProUGUI livesCounter;
     public TextMeshProUGUI coinCounter;
 
     Animator _animator;
+    Animator _doorAni;
+    Animator _exitAni;
     void Start()
     {
         Physics.gravity = _defaultGravity;
         _animator = GetComponent<Animator>();
+        _doorAni = exitDoor.GetComponent<Animator>();
+        _exitAni = exitPlat.GetComponent<Animator>();
 
         _rigidbody = GetComponent<Rigidbody>();
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         _startingPos = transform.position;
         //_collectibles = GameObject.FindGameObjectsWithTag("Eggs");
-
-
+        mainCamera.gameObject.SetActive(true);
+        objCamerea.gameObject.SetActive(false);
+        hasGoal = true;
 
 
     }
@@ -60,10 +72,12 @@ public class DummyPlayer : MonoBehaviour
         bool hasVerticalInput = !Mathf.Approximately(vertical, 0f);
 
         bool isWalking = hasHorizontalInput || hasVerticalInput;
-        
 
         _animator.SetBool("isWalking", isWalking);
         _animator.SetBool("isJumping", isJumping);
+        _animator.SetBool("levelEnd", levelEnd);
+        _doorAni.SetBool("hasGoal", hasGoal);
+        _exitAni.SetBool("hasGoal", hasGoal);
 
         _rigidbody.MovePosition(_rigidbody.position + _movement * moveSpeed * Time.deltaTime);
         _rigidbody.MoveRotation(_rotation);
@@ -88,6 +102,11 @@ public class DummyPlayer : MonoBehaviour
         if (lives == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if (coins == 20)
+        {
+            StartCoroutine(camObj());
+            coins = 0;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -116,10 +135,33 @@ public class DummyPlayer : MonoBehaviour
             Object.Destroy(other.gameObject);
 
         }
+        if (other.gameObject.CompareTag("End"))
+        {
+            levelEnd = true;
+            moveSpeed = 0;
+            turnSpeed = 0;
+            jumpForce = 0;
+        }
     }
         void OnAnimatorMove()
     {
         _rigidbody.MovePosition(_rigidbody.position + _movement * _animator.deltaPosition.magnitude);
         _rigidbody.MoveRotation(_rotation);
     }
+
+    IEnumerator camObj()
+    {
+       
+        {
+            mainCamera.gameObject.SetActive(false);
+            objCamerea.gameObject.SetActive(true);
+            hasGoal = false;
+            yield return new WaitForSeconds(5.2f);
+            mainCamera.gameObject.SetActive(true);
+            objCamerea.gameObject.SetActive(false);
+            
+        }
+            yield break;
+    }
+
 }
