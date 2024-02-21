@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class DummyPlayer : MonoBehaviour
+public class DummyPlayer1 : MonoBehaviour
 {
     public float turnSpeed = 20;
     public float moveSpeed = 1f;
@@ -31,7 +31,6 @@ public class DummyPlayer : MonoBehaviour
     private float livesLost = -1;
 
     public Camera mainCamera;
-    public ParticleSystem walkDust;
     public Camera objCamerea;
 
     public TextMeshProUGUI livesCounter;
@@ -66,8 +65,7 @@ public class DummyPlayer : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
 
-        _movement.Set(horizontal, 0f, vertical);
-        //_movement.Normalize();
+       // _movement.Set(horizontal, 0f, vertical);
 
         bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f);
         bool hasVerticalInput = !Mathf.Approximately(vertical, 0f);
@@ -91,7 +89,28 @@ public class DummyPlayer : MonoBehaviour
     {
         livesCounter.text = lives.ToString();
         coinCounter.text = coins.ToString();
-      
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(Vector3.left);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(Vector3.right);
+        }
+            
+        if (Input.GetKey(KeyCode.W))
+        {
+            rb.AddForce(Vector3.up);
+        }
+            
+        if (Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(Vector3.down);
+        }
+            
 
         if (Input.GetKeyDown(KeyCode.Z) && IsOnGround == true)
         {

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class DummyPlayer : MonoBehaviour
+public class DummyPlayer2 : MonoBehaviour
 {
     public float turnSpeed = 20;
     public float moveSpeed = 1f;
@@ -31,7 +31,6 @@ public class DummyPlayer : MonoBehaviour
     private float livesLost = -1;
 
     public Camera mainCamera;
-    public ParticleSystem walkDust;
     public Camera objCamerea;
 
     public TextMeshProUGUI livesCounter;
@@ -61,9 +60,9 @@ public class DummyPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
+        float horizontal = Input.GetAxis("Horizontal2");
 
-        float vertical = Input.GetAxis("Vertical");
+        float vertical = Input.GetAxis("Vertical2");
 
 
         _movement.Set(horizontal, 0f, vertical);
@@ -93,7 +92,7 @@ public class DummyPlayer : MonoBehaviour
         coinCounter.text = coins.ToString();
       
 
-        if (Input.GetKeyDown(KeyCode.Z) && IsOnGround == true)
+        if (Input.GetKeyDown(KeyCode.Keypad0) && IsOnGround == true)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             IsOnGround = false;
