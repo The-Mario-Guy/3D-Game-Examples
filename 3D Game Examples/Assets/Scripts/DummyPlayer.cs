@@ -136,7 +136,7 @@ public class DummyPlayer : MonoBehaviour
             Object.Destroy(other.gameObject);
 
         }
-        if (other.gameObject.CompareTag("End"))
+        if (other.gameObject.CompareTag("End") && hasGoal == false)
         {
             levelEnd = true;
             moveSpeed = 0;
@@ -148,6 +148,7 @@ public class DummyPlayer : MonoBehaviour
     {
         _rigidbody.MovePosition(_rigidbody.position + _movement * _animator.deltaPosition.magnitude);
         _rigidbody.MoveRotation(_rotation);
+        walkDust.Play();
     }
 
     IEnumerator camObj()
