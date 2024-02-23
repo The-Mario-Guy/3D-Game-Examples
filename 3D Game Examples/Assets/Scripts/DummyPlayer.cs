@@ -13,6 +13,7 @@ public class DummyPlayer : MonoBehaviour
     public float gravityModifier = 1f;
     public bool IsOnGround = true;
     public bool isJumping = false;
+    public bool isDead = false;
     public bool levelEnd = false;
     public bool hasGoal = true;
     private Vector3 _movement;
@@ -24,6 +25,7 @@ public class DummyPlayer : MonoBehaviour
     private GameObject[] _collectibles;
     public GameObject exitDoor;
     public GameObject exitPlat;
+    public GameObject health;
 
     public float coins;
     public float lives = 4;
@@ -55,7 +57,7 @@ public class DummyPlayer : MonoBehaviour
         mainCamera.gameObject.SetActive(true);
         objCamerea.gameObject.SetActive(false);
         hasGoal = true;
-
+        health.SetActive(true);
 
     }
 
@@ -79,6 +81,7 @@ public class DummyPlayer : MonoBehaviour
         _animator.SetBool("levelEnd", levelEnd);
         _doorAni.SetBool("hasGoal", hasGoal);
         _exitAni.SetBool("hasGoal", hasGoal);
+        
 
         _rigidbody.MovePosition(_rigidbody.position + _movement * moveSpeed * Time.deltaTime);
         _rigidbody.MoveRotation(_rotation);
@@ -139,6 +142,7 @@ public class DummyPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("End") && hasGoal == false)
         {
             levelEnd = true;
+            health.SetActive(false);
             moveSpeed = 0;
             turnSpeed = 0;
             jumpForce = 0;
