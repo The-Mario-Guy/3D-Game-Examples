@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     public float MaxHealth;// 1000
     public Image slider1Fill;
     public GameObject lowBattery;
+    public GameObject player;
     public Slider slider1; //connected the slider
 
     public float healthDrain;
@@ -20,11 +21,9 @@ public class Health : MonoBehaviour
     {
         health = MaxHealth;
         HealthBar = GetComponent<Slider>();
-
+        player = GetComponent<GameObject>();
         HealthBar.maxValue = MaxHealth;
         HealthBar.value = health;
-        //lowBattery.SetActive(false);
-
     }
 
     void Update()
@@ -40,7 +39,7 @@ public class Health : MonoBehaviour
         {
             lowBattery.SetActive(false);
         }
-        if (health == 0)
+        if (health <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
