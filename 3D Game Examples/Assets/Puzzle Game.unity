@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06797036, g: 0.07308432, b: 0.08453389, a: 1}
+  m_IndirectSpecularColor: {r: 0.067994066, g: 0.07310594, b: 0.08453884, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -33297,7 +33297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 769222324126387873, guid: 90243fb9c730c4e7481462dff2564b01, type: 3}
       propertyPath: coins
-      value: 19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 769222324126387873, guid: 90243fb9c730c4e7481462dff2564b01, type: 3}
       propertyPath: lives
