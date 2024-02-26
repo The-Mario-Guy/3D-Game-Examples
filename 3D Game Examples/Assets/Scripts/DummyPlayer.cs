@@ -81,6 +81,8 @@ public class DummyPlayer : MonoBehaviour
         _animator.SetBool("levelEnd", levelEnd);
         _doorAni.SetBool("hasGoal", hasGoal);
         _exitAni.SetBool("hasGoal", hasGoal);
+
+
         
 
         _rigidbody.MovePosition(_rigidbody.position + _movement * moveSpeed * Time.deltaTime);

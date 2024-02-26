@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     public Image slider1Fill;
     public GameObject lowBattery;
     public Animator player;
+    public GameObject smoke;
     public bool isDead = false;
     public Slider slider1; //connected the slider
 
@@ -26,6 +27,7 @@ public class Health : MonoBehaviour
         HealthBar.maxValue = MaxHealth;
         HealthBar.value = health;
         isDead = false;
+        smoke.SetActive(false);
     }
 
     void Update()
@@ -34,11 +36,15 @@ public class Health : MonoBehaviour
         HealthBar.value = health;
         if (health < 30)
         {
+            //Has low battery
+            smoke.SetActive(true);
             slider1Fill.color = Color.Lerp(Color.red, Color.green, slider1.value / 100);
             lowBattery.SetActive(true);
         }
         else if (health > 30)
         {
+            //Has over 30 health ss
+            smoke.SetActive(false);
             lowBattery.SetActive(false);
         }
         if (health <= 0)
