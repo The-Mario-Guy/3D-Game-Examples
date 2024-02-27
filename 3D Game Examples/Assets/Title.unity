@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.63106006, g: 0.67392164, b: 0.7732601, a: 1}
+  m_IndirectSpecularColor: {r: 0.63113356, g: 0.6739715, b: 0.7731649, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 65234463}
   - component: {fileID: 65234462}
   m_Layer: 5
-  m_Name: Title (1)
+  m_Name: Prees Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,14 +207,14 @@ RectTransform:
   m_GameObject: {fileID: 65234460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.30899227, y: 0.30899227, z: 0.30899227}
+  m_LocalScale: {x: 0.6995276, y: 0.6995276, z: 0.6995276}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 360034387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.921745, y: -171.28702}
+  m_AnchoredPosition: {x: -119.06594, y: -201.41762}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65234462
@@ -239,8 +239,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRESS START
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86704b56441614690810f949d5c5b25c, type: 2}
+  m_sharedMaterial: {fileID: -8139591074441860038, guid: 86704b56441614690810f949d5c5b25c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -83.143166, w: 0}
+  m_margin: {x: 0, y: 0, z: -38.71911, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -539,7 +539,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.8867924, g: 0.6499948, b: 0.004182993, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -846,7 +846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 237, y: 182.3}
+  m_AnchoredPosition: {x: 357, y: 261.55}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &360034388
@@ -1430,27 +1430,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5803909772137837586, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4403676
+      value: 1.9810966
       objectReference: {fileID: 0}
     - target: {fileID: 5803909772137837586, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.5407395
+      value: 7.6207905
       objectReference: {fileID: 0}
     - target: {fileID: 5803909772137837586, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.7474527
+      value: 5.1542854
       objectReference: {fileID: 0}
     - target: {fileID: 5803909772137837586, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -945.89215
+      value: -1310.5668
       objectReference: {fileID: 0}
     - target: {fileID: 5803909772137837586, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -430.9996
+      value: -548.4831
       objectReference: {fileID: 0}
     - target: {fileID: 5803909772137837586, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.3430574
+      value: -2.7787566
       objectReference: {fileID: 0}
     - target: {fileID: 5803909772137837586, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2148,8 +2148,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "CRASH \nDUMMY 64"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86704b56441614690810f949d5c5b25c, type: 2}
+  m_sharedMaterial: {fileID: -8139591074441860038, guid: 86704b56441614690810f949d5c5b25c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2367,6 +2367,58 @@ MeshFilter:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cc88cdcd7197b4d4c83e040f535b3fba, type: 3}
   m_PrefabInstance: {fileID: 474812623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1644893171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644893172}
+  - component: {fileID: 1644893173}
+  m_Layer: 0
+  m_Name: Title Screen Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644893172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644893171}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1644893173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644893171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7279aea1975c4196a63785c7be98c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneNumber: 1
+  transitionTime: 1
+  transition: {fileID: 1652533061}
+--- !u!95 &1652533061 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1010310839712509907, guid: 6681694b2fb1f4d4e9b0b986450ff5b0, type: 3}
+  m_PrefabInstance: {fileID: 970606357}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1654149935
 GameObject:
@@ -2657,3 +2709,4 @@ SceneRoots:
   - {fileID: 217289691}
   - {fileID: 262430065}
   - {fileID: 767926333}
+  - {fileID: 1644893172}

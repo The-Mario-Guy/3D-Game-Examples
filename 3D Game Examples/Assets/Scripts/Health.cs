@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     public GameObject lowBattery;
     public Animator player;
     public GameObject smoke;
+    public GameObject music;
+    public AudioSource _lowBat;
     public bool isDead = false;
     public Slider slider1; //connected the slider
 
@@ -40,6 +42,8 @@ public class Health : MonoBehaviour
             smoke.SetActive(true);
             slider1Fill.color = Color.Lerp(Color.red, Color.green, slider1.value / 100);
             lowBattery.SetActive(true);
+            music.SetActive(false);
+            _lowBat.Play();
         }
         else if (health > 30)
         {

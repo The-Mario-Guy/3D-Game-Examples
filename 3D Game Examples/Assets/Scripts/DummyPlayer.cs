@@ -35,6 +35,9 @@ public class DummyPlayer : MonoBehaviour
     public Camera mainCamera;
     public ParticleSystem walkDust;
     public Camera objCamerea;
+    AudioSource _footSteps;
+    public AudioSource _jumping;
+    public AudioSource _coinSFX;
 
     public TextMeshProUGUI livesCounter;
     public TextMeshProUGUI coinCounter;
@@ -48,6 +51,7 @@ public class DummyPlayer : MonoBehaviour
         _animator = GetComponent<Animator>();
         _doorAni = exitDoor.GetComponent<Animator>();
         _exitAni = exitPlat.GetComponent<Animator>();
+        _footSteps = GetComponent<AudioSource>();
 
         _rigidbody = GetComponent<Rigidbody>();
         playerRb = GetComponent<Rigidbody>();
@@ -77,13 +81,26 @@ public class DummyPlayer : MonoBehaviour
         bool isWalking = hasHorizontalInput || hasVerticalInput;
 
         _animator.SetBool("isWalking", isWalking);
+        if (isWalking && IsOnGround)
+        {
+            if (!_footSteps.isPlaying)
+            {
+                _footSteps.Play();
+            }
+        }
+        else
+        {
+            _footSteps.Stop();
+        }
         _animator.SetBool("isJumping", isJumping);
         _animator.SetBool("levelEnd", levelEnd);
         _doorAni.SetBool("hasGoal", hasGoal);
         _exitAni.SetBool("hasGoal", hasGoal);
 
-
         
+
+
+
 
         _rigidbody.MovePosition(_rigidbody.position + _movement * moveSpeed * Time.deltaTime);
         _rigidbody.MoveRotation(_rotation);
@@ -103,6 +120,7 @@ public class DummyPlayer : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             IsOnGround = false;
             isJumping = true;
+            _jumping.Play();
         }
 
         if (lives == 0)
@@ -137,7 +155,7 @@ public class DummyPlayer : MonoBehaviour
         {
 
             coins += coinPlus;
-
+            _coinSFX.Play();
             Object.Destroy(other.gameObject);
 
         }
