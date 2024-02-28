@@ -12,11 +12,9 @@ public class Health : MonoBehaviour
     public float MaxHealth;// 1000
     public Image slider1Fill;
     public GameObject lowBattery;
-    public Animator player;
     public GameObject smoke;
     public GameObject music;
-    public AudioSource _lowBat;
-    public bool isDead = false;
+    public GameObject lowBat;
     public Slider slider1; //connected the slider
 
     public float healthDrain;
@@ -25,11 +23,10 @@ public class Health : MonoBehaviour
     {
         health = MaxHealth;
         HealthBar = GetComponent<Slider>();
-        player = GetComponent<Animator>();
         HealthBar.maxValue = MaxHealth;
         HealthBar.value = health;
-        isDead = false;
         smoke.SetActive(false);
+        lowBat.SetActive(false);
     }
 
     void Update()
@@ -43,26 +40,20 @@ public class Health : MonoBehaviour
             slider1Fill.color = Color.Lerp(Color.red, Color.green, slider1.value / 100);
             lowBattery.SetActive(true);
             music.SetActive(false);
-            _lowBat.Play();
+            lowBat.SetActive(true);
         }
         else if (health > 30)
         {
             //Has over 30 health ss
             smoke.SetActive(false);
             lowBattery.SetActive(false);
+            lowBat.SetActive(false);
         }
         if (health <= 0)
         {
-            isDead = true;
-            Died();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            
         }
 
-        player.SetBool("isDead", isDead);
-    }
-
-    IEnumerator Died()
-    {
-        yield return new WaitForSeconds(3.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
