@@ -15,6 +15,10 @@ public class Health : MonoBehaviour
     public GameObject smoke;
     public GameObject music;
     public GameObject lowBat;
+    public GameObject lights;
+    public GameObject lowLights;
+    public GameObject emergancyLights;
+    public GameObject playerLights;
     public Slider slider1; //connected the slider
 
     public float healthDrain;
@@ -41,6 +45,10 @@ public class Health : MonoBehaviour
             lowBattery.SetActive(true);
             music.SetActive(false);
             lowBat.SetActive(true);
+            lights.SetActive(false);
+            lowLights.SetActive(true);
+            playerLights.SetActive(false);
+            emergancyLights.SetActive(true);
         }
         else if (health > 30)
         {
@@ -48,6 +56,10 @@ public class Health : MonoBehaviour
             smoke.SetActive(false);
             lowBattery.SetActive(false);
             lowBat.SetActive(false);
+            lights.SetActive(true);
+            lowLights.SetActive(false);
+            playerLights.SetActive(true);
+            emergancyLights.SetActive(false);
         }
         if (health <= 0)
         {
