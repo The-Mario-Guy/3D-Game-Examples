@@ -26,6 +26,10 @@ public class DummyPlayer : MonoBehaviour
     public GameObject exitDoor;
     public GameObject exitPlat;
     public GameObject health;
+    public GameObject weowLights;
+    public GameObject normLights;
+    public GameObject youWin;
+    public GameObject smoke;
 
     public float coins;
     public float lives = 4;
@@ -116,7 +120,17 @@ public class DummyPlayer : MonoBehaviour
       
 
         if (Input.GetKeyDown(KeyCode.Z) && IsOnGround == true)
+        { 
+        
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            IsOnGround = false;
+            isJumping = true;
+            _jumping.Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && IsOnGround == true)
         {
+
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             IsOnGround = false;
             isJumping = true;
@@ -166,6 +180,10 @@ public class DummyPlayer : MonoBehaviour
             moveSpeed = 0;
             turnSpeed = 0;
             jumpForce = 0;
+            weowLights.SetActive(false);
+            normLights.SetActive(true);
+            smoke.SetActive(false);
+            youWin.SetActive(true);
         }
     }
         void OnAnimatorMove()
