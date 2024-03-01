@@ -6520,7 +6520,7 @@ MonoBehaviour:
   emergancyLights: {fileID: 721417874}
   playerLights: {fileID: 306788018}
   slider1: {fileID: 477799109}
-  healthDrain: 0.045
+  healthDrain: 0.02
 --- !u!82 &477799111
 AudioSource:
   m_ObjectHideFlags: 0
